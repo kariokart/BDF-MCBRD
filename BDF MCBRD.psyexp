@@ -8,7 +8,7 @@
     <Param name="Data file delimiter" updates="None" val="auto" valType="str"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
-    <Param name="Experiment info" updates="None" val="{'session': '001', 'participant': ''}" valType="code"/>
+    <Param name="Experiment info" updates="None" val="{'participant': ''}" valType="code"/>
     <Param name="Force stereo" updates="None" val="True" valType="bool"/>
     <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
     <Param name="HTML path" updates="None" val="html" valType="str"/>
@@ -22,11 +22,11 @@
     <Param name="Save psydat file" updates="None" val="True" valType="bool"/>
     <Param name="Save wide csv file" updates="None" val="True" valType="bool"/>
     <Param name="Screen" updates="None" val="1" valType="num"/>
-    <Param name="Show info dlg" updates="None" val="False" valType="bool"/>
-    <Param name="Show mouse" updates="None" val="True" valType="bool"/>
+    <Param name="Show info dlg" updates="None" val="True" valType="bool"/>
+    <Param name="Show mouse" updates="None" val="False" valType="bool"/>
     <Param name="Units" updates="None" val="height" valType="str"/>
     <Param name="Use version" updates="None" val="" valType="str"/>
-    <Param name="Window size (pixels)" updates="None" val="[1920, 1080]" valType="code"/>
+    <Param name="Window size (pixels)" updates="None" val="[1536, 864]" valType="code"/>
     <Param name="blendMode" updates="None" val="avg" valType="str"/>
     <Param name="color" updates="None" val="white" valType="str"/>
     <Param name="colorSpace" updates="None" val="rgb" valType="str"/>
@@ -39,12 +39,12 @@
       <CodeComponent name="code">
         <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Experiment" updates="constant" val="#import all libraries for experiment&amp;#10;from PIL import Image, ImageDraw&amp;#10;import win32api&amp;#10;&amp;#10;#get window size&amp;#10;xwin, ywin = win.size&amp;#10;&amp;#10;#find image location on screen&amp;#10;#(image is displayed at 1024x768 at the center&amp;#10;#of the screen, regardless of individual screen size)&amp;#10;#image dimensions start at the top left corner&amp;#10;imageStartX = (xwin / 2) - 512&amp;#10;imageStartY = (ywin / 2) - 384&amp;#10;&amp;#10;#write participant's screen dimensions,&amp;#10;#the starting location of the 1024x768 BDF image,&amp;#10;#and column names at beginning of output file&amp;#10;#   note, if there is already content in this output file,&amp;#10;#   this code will begin writing after the previous content.&amp;#10;#   multiple runs can be viewed in the same file.&amp;#10;outfile = open('FixatedLocations.txt','a')&amp;#10;outfile.write('BEGIN EXPERIMENT')&amp;#10;outfile.write('\nWindow dimensions: ')&amp;#10;outfile.write('%s  %s\n' % (str(xwin),str(ywin)))&amp;#10;outfile.write('Image top left corner: ')&amp;#10;outfile.write('%s  %s\n' % (str(imageStartX),str(imageStartY)))&amp;#10;outfile.write('Begin mouse recording... \n')&amp;#10;#Column names:&amp;#10;#Img = image number&amp;#10;#OriX, OriY = original mouse position on the participant's screen&amp;#10;#   note, positions outside BDF edges displayed as the edge value,&amp;#10;#   as the nonblurred circle will not go past the image dimensions.&amp;#10;#ImgX, ImgY = mouse position relative to the 1024x768 dimensions&amp;#10;#   of the BDF image. Consider these dimensions standardized across&amp;#10;#   participants.&amp;#10;outfile.write('Img\tOriX\tOriY\tImgX\tImgY\n')&amp;#10;outfile.close()" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="#import all libraries for experiment&amp;#10;from PIL import Image, ImageDraw&amp;#10;import win32api&amp;#10;&amp;#10;#get window size&amp;#10;xwin, ywin = win.size&amp;#10;&amp;#10;#find image location on screen&amp;#10;#(image is displayed at 1024x768 at the center&amp;#10;#of the screen, regardless of individual screen size)&amp;#10;#image dimensions start at the top left corner&amp;#10;imageStartX = (xwin / 2) - 512&amp;#10;imageStartY = (ywin / 2) - 384&amp;#10;#imageStartX = int(imageStartX)&amp;#10;#imageStartY = int(imageStartY)&amp;#10;&amp;#10;#write participant's screen dimensions,&amp;#10;#the starting location of the 1024x768 BDF image,&amp;#10;#and column names at beginning of output file&amp;#10;#   note, if there is already content in this output file,&amp;#10;#   this code will begin writing after the previous content.&amp;#10;#   multiple runs can be viewed in the same file.&amp;#10;outfile = open('FixatedLocations.txt','a')&amp;#10;outfile.write('BEGIN EXPERIMENT')&amp;#10;outfile.write('\nWindow dimensions: ')&amp;#10;outfile.write('%s  %s\n' % (str(xwin),str(ywin)))&amp;#10;outfile.write('Image top left corner: ')&amp;#10;outfile.write('%s  %s\n' % (str(imageStartX),str(imageStartY)))&amp;#10;outfile.write('Begin mouse recording... \n')&amp;#10;#Column names:&amp;#10;#Img = image number&amp;#10;#OriX, OriY = original mouse position on the participant's screen&amp;#10;#   note, positions outside BDF edges displayed as the edge value,&amp;#10;#   as the nonblurred circle will not go past the image dimensions.&amp;#10;#ImgX, ImgY = mouse position relative to the 1024x768 dimensions&amp;#10;#   of the BDF image. Consider these dimensions standardized across&amp;#10;#   participants.&amp;#10;outfile.write('Img\tOriX\tOriY\tImgX\tImgY\n')&amp;#10;outfile.close()" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="/* Syntax Error: Fix Python code */" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Py" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="#get mouse position&amp;#10;mousePos = win32api.GetCursorPos()&amp;#10;xpixel = mousePos[0]&amp;#10;ypixel = mousePos[1]&amp;#10;&amp;#10;#open output file&amp;#10;outfile = open('FixatedLocations.txt','a')&amp;#10;&amp;#10;#limit mouse location reporting to image dimensions&amp;#10;if xpixel &lt; imageStartX:&amp;#10;    xpixel = imageStartX&amp;#10;#    outfile.write('out of bounds')&amp;#10;elif xpixel &gt; (imageStartX + 1024):&amp;#10;    xpixel = (imageStartX + 1024)&amp;#10;#    outfile.write('out of bounds')&amp;#10;if ypixel &lt; imageStartY:&amp;#10;    ypixel = imageStartY&amp;#10;#    outfile.write('out of bounds')&amp;#10;elif ypixel &gt; (imageStartY + 768):&amp;#10;    ypixel = (imageStartY + 768)&amp;#10;#    outfile.write('out of bounds')&amp;#10;&amp;#10;#write image number to output file&amp;#10;imageNumber = OriginalImage.replace('images/','')&amp;#10;imageNumber = imageNumber.replace('.bmp','')&amp;#10;outfile.write(imageNumber)&amp;#10;#write mouse location on participant's screen&amp;#10;outfile.write('\t%s\t%s\t' % (str(xpixel),str(ypixel)))&amp;#10;&amp;#10;#open the input image as numpy array, convert to RGB&amp;#10;img=Image.open(OriginalImage).convert(&quot;RGB&quot;)&amp;#10;npImage=np.array(img)&amp;#10;&amp;#10;#create same size alpha layer with circle&amp;#10;alpha = Image.new('L', img.size,0)&amp;#10;draw = ImageDraw.Draw(alpha)&amp;#10;&amp;#10;#determine mouse location relative to image dimensions,&amp;#10;#and use these to display nonblurred circle&amp;#10;xpixelOnImage = xpixel- imageStartX&amp;#10;ypixelOnImage = ypixel- imageStartY&amp;#10;#output the values used to display nonblurred circle&amp;#10;outfile.write('%s\t%s\n' % (str(xpixelOnImage),str(ypixelOnImage)))&amp;#10;#draw circle on alpha layer, using pixel locations -/+ the radius&amp;#10;#of the circle&amp;#10;draw.pieslice([(xpixelOnImage - 50),(ypixelOnImage -50),(xpixelOnImage +50),(ypixelOnImage +50)],0,360,fill=255)&amp;#10;#close output file&amp;#10;outfile.close()&amp;#10;&amp;#10;#convert alpha Image to numpy array&amp;#10;npAlpha=np.array(alpha)&amp;#10;&amp;#10;#add alpha layer to RGB&amp;#10;npImage=np.dstack((npImage,npAlpha))&amp;#10;&amp;#10;#save with alpha&amp;#10;Image.fromarray(npImage).save('images/result.png')" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="mouseVis = new event.Mouse({&quot;win&quot;: win});&amp;#10;mouseVis.setVisible(false);&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="mouseVis = event.Mouse(win=win)&amp;#10;mouseVis.setVisible(False)" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="    &amp;#10;#get mouse position&amp;#10;mousePos = win32api.GetCursorPos()&amp;#10;xpixel = mousePos[0]&amp;#10;ypixel = mousePos[1]&amp;#10;&amp;#10;#open output file&amp;#10;outfile = open('FixatedLocations.txt','a')&amp;#10;&amp;#10;#limit mouse location reporting to image dimensions&amp;#10;if xpixel &lt; imageStartX:&amp;#10;    xpixel = imageStartX&amp;#10;#    outfile.write('out of bounds')&amp;#10;elif xpixel &gt; (imageStartX + 1024):&amp;#10;    xpixel = (imageStartX + 1024)&amp;#10;#    outfile.write('out of bounds')&amp;#10;if ypixel &lt; imageStartY:&amp;#10;    ypixel = imageStartY&amp;#10;#    outfile.write('out of bounds')&amp;#10;elif ypixel &gt; (imageStartY + 768):&amp;#10;    ypixel = (imageStartY + 768)&amp;#10;#    outfile.write('out of bounds')&amp;#10;&amp;#10;#write image number to output file&amp;#10;imageNumber = OriginalImage.replace('images/','')&amp;#10;imageNumber = imageNumber.replace('.bmp','')&amp;#10;outfile.write(imageNumber)&amp;#10;#write mouse location on participant's screen&amp;#10;outfile.write('\t%s\t%s\t' % (str(xpixel),str(ypixel)))&amp;#10;&amp;#10;#open the input image as numpy array, convert to RGB&amp;#10;img=Image.open(OriginalImage).convert(&quot;RGB&quot;)&amp;#10;npImage=np.array(img)&amp;#10;&amp;#10;#create same size alpha layer with circle&amp;#10;alpha = Image.new('L', img.size,0)&amp;#10;draw = ImageDraw.Draw(alpha)&amp;#10;&amp;#10;#determine mouse location relative to image dimensions,&amp;#10;#and use these to display nonblurred circle&amp;#10;xpixelOnImage = xpixel- imageStartX&amp;#10;ypixelOnImage = ypixel- imageStartY&amp;#10;#output the values used to display nonblurred circle&amp;#10;outfile.write('%s\t%s\n' % (str(xpixelOnImage),str(ypixelOnImage)))&amp;#10;#draw circle on alpha layer, using pixel locations -/+ the radius&amp;#10;#of the circle&amp;#10;draw.pieslice([(xpixelOnImage - 50),(ypixelOnImage -50),(xpixelOnImage +50),(ypixelOnImage +50)],0,360,fill=255)&amp;#10;#close output file&amp;#10;outfile.close()&amp;#10;&amp;#10;#convert alpha Image to numpy array&amp;#10;npAlpha=np.array(alpha)&amp;#10;&amp;#10;#add alpha layer to RGB&amp;#10;npImage=np.dstack((npImage,npAlpha))&amp;#10;&amp;#10;#save with alpha&amp;#10;Image.fromarray(npImage).save('images/result.png')" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="/* Syntax Error: Fix Python code */" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -141,7 +141,7 @@
       </KeyboardComponent>
     </Routine>
     <Routine name="Instructions">
-      <TextComponent name="text">
+      <TextComponent name="Instruction">
         <Param name="color" updates="constant" val="black" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
@@ -149,8 +149,8 @@
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="font" updates="constant" val="Times New Roman" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.04" valType="code"/>
-        <Param name="name" updates="None" val="text" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.035" valType="code"/>
+        <Param name="name" updates="None" val="Instruction" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
@@ -161,7 +161,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="View picture stories by using your mouse to reveal detailed information in each image.&amp;#10;&amp;#10;Use the space bar to proceed to the next image.&amp;#10;&amp;#10;&amp;#10;Press space to begin." valType="str"/>
+        <Param name="text" updates="constant" val="Thanks for participating!&amp;#10;&amp;#10;In this study, you are going to be presented with six picture stories. The pictures in each story will be shown in either a coherent or random order. Use your mouse to reveal detailed information in each image.&amp;#10;&amp;#10;Your task will be to comprehend each of these picture stories to the best of your ability. When you are ready to view the first picture story, press the [Spacebar] on the keyboard.&amp;#10;&amp;#10;As soon as you are ready to advance to the next picture in the story, press the [Spacebar]. At the end of the picture story, you will be asked to write a summary of the story that you were presented with. When you are done writing your summary, press the [Enter] button on the keyboard. This procedure will be repeated for the remaining picture stories.&amp;#10;&amp;#10;Press the [Spacebar] to begin." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -201,6 +201,21 @@
         <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
+      <CodeComponent name="code_2">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="mouseVis = new event.Mouse({&quot;win&quot;: win});&amp;#10;mouseVis.setVisible(false);&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="mouseVis = event.Mouse(win=win)&amp;#10;mouseVis.setVisible(False)" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="code_2" valType="code"/>
+      </CodeComponent>
     </Routine>
     <Routine name="End">
       <TextComponent name="text_2">
@@ -223,7 +238,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="All done! Thank you!" valType="str"/>
+        <Param name="text" updates="constant" val="All done! Thank you!&amp;#10;&amp;#10;Press [Space] to end." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -263,9 +278,91 @@
         <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
+      <CodeComponent name="code_3">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="mouseVis = event.Mouse(win=win)&amp;#10;mouseVis.setVisible(False)" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="&amp;#10;## script to send datafile to aws s3 bucket via python and the boto3 library&amp;#10;# not guaranteed to work for PsychoPy because I don't know if PsychoPy&amp;#10;# supports the boto3 library&amp;#10;import boto3&amp;#10;#from botocore.exceptions import NoCredentialsError&amp;#10;&amp;#10;import pandas as pd&amp;#10;import csv&amp;#10;&amp;#10;## S3 bucket access keys&amp;#10;# good practice to not have this in the compiled program for security&amp;#10;# purposes, but it's fine if no other way&amp;#10;ACCESS_KEY = 'AKIAI2FTKYJ3AZNWGQNA'&amp;#10;SECRET_KEY = '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'&amp;#10;&amp;#10;&amp;#10;## Second method - probably better because it dynamically creates&amp;#10;# a datafile and can save to specific directory in the bucket&amp;#10;#from io import StringIO&amp;#10;region_name = 'us-east-2'&amp;#10;s3 = boto3.client(&quot;s3&quot;,\&amp;#10;                 region_name = region_name,\&amp;#10;                 aws_access_key_id=ACCESS_KEY,\&amp;#10;                 aws_secret_access_key=SECRET_KEY)&amp;#10;#csv_buf = StringIO()&amp;#10;#df.to_csv(csv_buf, header=True, index=False)&amp;#10;#csv_buf.seek(0)&amp;#10;filename = 'FixatedLocations' + expInfo['participant'] + '.txt'&amp;#10;key2 = 'PsychoPy/' + filename&amp;#10;s3.put_object(Bucket='kirkpatricklab', Body=open('FixatedLocations.txt','rb'),&amp;#10;             Key=key2)&amp;#10;#s3.Bucket('kirkpatricklab').upload_file('FixatedLocations.txt','PsychoPy/FixatedLocations.txt')&amp;#10;#s3.Object('kirkpatricklab','FixatedLocations.txt').put(Body=open('FixatedLocations.txt','rb'))&amp;#10;&amp;#10;" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="/* Syntax Error: Fix Python code */" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="code_3" valType="code"/>
+      </CodeComponent>
     </Routine>
+    <Routine name="text_input">
+      <CodeComponent name="code_4">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="modify = false;&amp;#10;text.text = &quot;&quot;;&amp;#10;event.clearEvents(&quot;keyboard&quot;);&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="modify = False&amp;#10;text.text = ''&amp;#10;event.clearEvents('keyboard')" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="if int(EndOfStory) == 1:&amp;#10;    continueRoutine = True&amp;#10;else:&amp;#10;    continueRoutine = False&amp;#10;&amp;#10;&amp;#10;keys = event.getKeys()&amp;#10;if len(keys):&amp;#10;    if 'space' in keys:&amp;#10;        text.text = text.text + ' '&amp;#10;    elif 'backspace' in keys:&amp;#10;        text.text = text.text[:-1]&amp;#10;    elif 'period' in keys:&amp;#10;        text.text = text.text + '.'&amp;#10;    elif 'comma' in keys:&amp;#10;        text.text = text.text + ','&amp;#10;    elif 'apostrophe' in keys:&amp;#10;        text.text = text.text + '\''&amp;#10;    elif 'lshift' in keys or 'rshift' in keys:&amp;#10;        modify = True&amp;#10;    elif 'return' in keys:&amp;#10;        continueRoutine = False&amp;#10;    else:&amp;#10;        if modify:&amp;#10;            text.text = text.text + keys[0].upper()&amp;#10;            modify = False&amp;#10;        else:&amp;#10;            text.text = text.text + keys[0]" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;if ((Number.parseInt(EndOfStory) === 1)) {&amp;#10;    continueRoutine = true;&amp;#10;} else {&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;keys = event.getKeys();&amp;#10;if (keys.length) {&amp;#10;    if (_pj.in_es6(&quot;space&quot;, keys)) {&amp;#10;        text.text = (text.text + &quot; &quot;);&amp;#10;    } else {&amp;#10;        if (_pj.in_es6(&quot;backspace&quot;, keys)) {&amp;#10;            text.text = text.text.slice(0, (- 1));&amp;#10;        } else {&amp;#10;            if (_pj.in_es6(&quot;period&quot;, keys)) {&amp;#10;                text.text = (text.text + &quot;.&quot;);&amp;#10;            } else {&amp;#10;                if (_pj.in_es6(&quot;comma&quot;, keys)) {&amp;#10;                    text.text = (text.text + &quot;,&quot;);&amp;#10;                } else {&amp;#10;                    if ((_pj.in_es6(&quot;lshift&quot;, keys) || _pj.in_es6(&quot;rshift&quot;, keys))) {&amp;#10;                        modify = true;&amp;#10;                    } else {&amp;#10;                        if (_pj.in_es6(&quot;return&quot;, keys)) {&amp;#10;                            continueRoutine = false;&amp;#10;                        } else {&amp;#10;                            if (modify) {&amp;#10;                                text.text = (text.text + keys[0].upper());&amp;#10;                                modify = false;&amp;#10;                            } else {&amp;#10;                                text.text = (text.text + keys[0]);&amp;#10;                            }&amp;#10;                        }&amp;#10;                    }&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="thisExp.addData(&quot;typedWord&quot;, text.text);&amp;#10;if ((Number.parseInt(EndOfStory) === 1)) {&amp;#10;    outfile = open(&quot;FixatedLocations.txt&quot;, &quot;a&quot;);&amp;#10;    outfile.write(&quot;\n SUMMARY: \n&quot;);&amp;#10;    outfile.write(text.text);&amp;#10;    outfile.write(&quot;\n Begin next story... \n&quot;);&amp;#10;    outfile.close();&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData(&quot;typedWord&quot;, text.text)&amp;#10;&amp;#10;if int(EndOfStory) == 1:&amp;#10;    outfile = open('FixatedLocations.txt','a')&amp;#10;    outfile.write('\n SUMMARY: \n')&amp;#10;    outfile.write(text.text)&amp;#10;    outfile.write('\n Begin next story... \n')&amp;#10;    outfile.close()" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="code_4" valType="code"/>
+      </CodeComponent>
+      <TextComponent name="text_3">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Times New Roman" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.04" valType="code"/>
+        <Param name="name" updates="None" val="text_3" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0.3)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Type your understanding of the story below. &amp;#10;Press [Enter] when you are done." valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <TextComponent name="text">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Times New Roman" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.035" valType="code"/>
+        <Param name="name" updates="None" val="text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="Informed_Consent"/>
   </Routines>
   <Flow>
+    <Routine name="Informed_Consent"/>
     <Routine name="Instructions"/>
     <LoopInitiator loopType="TrialHandler" name="trials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
@@ -279,6 +376,7 @@
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <Routine name="trial"/>
+    <Routine name="text_input"/>
     <LoopTerminator name="trials"/>
     <Routine name="End"/>
   </Flow>
